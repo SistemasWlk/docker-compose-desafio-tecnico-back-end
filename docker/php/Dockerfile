@@ -20,6 +20,13 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Instalando extenções PHP
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd sockets
 
+RUN apt-get update; \
+    apt-get install -y libpq5 libpq-dev; \
+    docker-php-ext-install pdo pdo_pgsql; \
+    apt-get autoremove --purge -y libpq-dev; \
+    apt-get clean ; \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/
+    
 # Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 #RUN composer -d /var/www/ install --no-interaction

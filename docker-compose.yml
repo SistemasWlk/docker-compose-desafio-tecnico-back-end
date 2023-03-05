@@ -76,7 +76,7 @@ services:
     restart: unless-stopped
     command: "php artisan queue:work"
     volumes:
-      - ${REDIS_PATH}:/var/www
+      - ${QUEUE_PATH}:/var/www
     depends_on:
       - desafio-tecnico-back-end-redis
       - desafio-tecnico-back-end-app
