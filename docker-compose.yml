@@ -1,0 +1,95 @@
+version: "3.7"
+
+services:
+  # image project
+  desafio-tecnico-back-end-app:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+      args:
+        user: ${PHP_FPM_USER}
+        uid: ${PHP_FPM_UID}
+    image: desafio-tecnico-back-end-app
+    container_name: desafio-tecnico-back-end-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ${PHP_FPM_APPLICATION}/:/var/www
+    depends_on:
+      - desafio-tecnico-back-end-redis
+    networks:
+      - desafio-tecnico-back-end-network
+
+  # nginx
+  desafio-tecnico-back-end-nginx:
+    image: nginx:alpine
+    container_name: desafio-tecnico-back-end-nginx
+    restart: unless-stopped
+    ports: 
+      - "${NGINX_HOST_HTTP_PORT}:80"
+      - "${NGINX_HOST_HTTPS_PORT}:443"
+    volumes: 
+      - ${NGINX_APPLICATION}:/var/www
+      - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
+      - ${NGINX_CONF_PATH}:/etc/nginx/conf.d
+    networks: 
+      - desafio-tecnico-back-end-network
+
+  # postgres
+  desafio-tecnico-back-end-postgres:
+    image: desafio-tecnico-back-end-postgres
+    container_name: desafio-tecnico-back-end-postgres
+    restart: unless-stopped
+    build:
+      context: ./docker/postgres
+      dockerfile: Dockerfile
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - ${POSTGRES_DATA}:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    networks:
+      - desafio-tecnico-back-end-network
+
+  # pgadmin
+  desafio-tecnico-back-end-pgadmin:
+    image: dpage/pgadmin4
+    container_name: desafio-tecnico-back-end-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "${PGADMIN_PORT}:80"
+    depends_on:
+      - desafio-tecnico-back-end-postgres
+    networks:
+      - desafio-tecnico-back-end-network
+
+  # queue
+  desafio-tecnico-back-end-queue:
+    image: desafio-tecnico-back-end-app
+    container_name: desafio-tecnico-back-end-queue
+    restart: unless-stopped
+    command: "php artisan queue:work"
+    volumes:
+      - ${REDIS_PATH}:/var/www
+    depends_on:
+      - desafio-tecnico-back-end-redis
+      - desafio-tecnico-back-end-app
+    networks:
+      - desafio-tecnico-back-end-network
+
+  # redis
+  desafio-tecnico-back-end-redis:
+    image: redis:latest
+    container_name: desafio-tecnico-back-end-redis
+    networks:
+      - desafio-tecnico-back-end-network
+
+networks:
+  desafio-tecnico-back-end-network:
+    driver: bridge
