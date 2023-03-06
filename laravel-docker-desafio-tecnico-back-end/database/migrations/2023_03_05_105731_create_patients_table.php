@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('image')->nullable();
             $table->string('cpf', 11)->uniqid()->nullable();
-            $table->string('cns', 11)->uniqid()->nullable();
-            $table->date('birth_date')nullable();
+            $table->string('cns', 100)->uniqid()->nullable();
+            $table->date('birth_date')->nullable();
             $table->string('mother', 100)->nullable();
             $table->string('father', 100)->nullable();
             $table->string('cep', 20)->nullable();

@@ -34,3 +34,5 @@
 192.168.144.1 - - [05/Mar/2023:13:32:12 +0000] "GET / HTTP/1.1" 200 17659 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36"
 192.168.144.1 - - [05/Mar/2023:13:32:12 +0000] "GET /favicon.ico HTTP/1.1" 304 0 "http://localhost:8090/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36"
 192.168.160.1 - - [05/Mar/2023:14:20:01 +0000] "GET / HTTP/1.1" 200 17659 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36"
+192.168.160.1 - - [05/Mar/2023:18:20:57 +0000] "GET / HTTP/1.1" 200 27 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36"
+192.168.160.1 - - [05/Mar/2023:18:20:57 +0000] "GET /favicon.ico HTTP/1.1" 304 0 "http://localhost:8090/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36"
