@@ -15,20 +15,14 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name', 100);
+            $table->uuid('address_id')->nullable();
+            $table->string('name', 100)->nullable();
             $table->string('image')->nullable();
             $table->string('cpf', 11)->uniqid()->nullable();
             $table->string('cns', 100)->uniqid()->nullable();
             $table->date('birth_date')->nullable();
             $table->string('mother', 100)->nullable();
             $table->string('father', 100)->nullable();
-            $table->string('cep', 20)->nullable();
-            $table->string('address', 100)->nullable();
-            $table->string('number', 20)->nullable();
-            $table->string('complement', 100);
-            $table->string('neighborhood', 100)->nullable();
-            $table->string('city', 100)->nullable();
-            $table->string('state', 100)->nullable();
             $table->timestamps();
         });
     }

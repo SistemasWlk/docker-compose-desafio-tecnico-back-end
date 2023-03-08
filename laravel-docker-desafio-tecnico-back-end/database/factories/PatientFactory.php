@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Partient;
+use App\Models\Address;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -26,6 +27,7 @@ class PatientFactory extends Factory
     public function definition()
     {
         return [
+            'address_id' => \App\Models\Address::factory(),
             'name' => $faker->name,
             'image' => $faker->image,
             'cpf' => $faker->unique()->cpf,
@@ -33,13 +35,6 @@ class PatientFactory extends Factory
             'birth_date' => $faker->birth_date,
             'mother' => $faker->mother,
             'father' => $faker->father,
-            'cep' => $faker->cep,
-            'address' => $faker->address,
-            'number' => $faker->number,
-            'complement' => $faker->complement,
-            'neighborhood' => $faker->neighborhood,
-            'city' => $faker->city,
-            'state' => $faker->state,
         ];
     }
 }
