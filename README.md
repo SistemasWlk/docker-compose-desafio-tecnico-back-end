@@ -18,19 +18,19 @@
 - Realizar o clone
 
 ```
-root@577187a1bdd4# git clone https://github.com/SistemasWlk/laravel-docker-desafio-tecnico.git 
+root@577187a1bdd4# https://github.com/SistemasWlk/docker-compose-desafio-tecnico-back-end.git
 ```
 
-- Acesse o branch master
+- Acesse o branch main
 
 ```
-root@577187a1bdd4# git checkout master 
+root@577187a1bdd4# git checkout main 
 ```
 
 - Entra na pasta raiz do projeto e executar o seguinte comando
 
 ```
-root@577187a1bdd4# docker-compose up -d --build
+root@577187a1bdd4# docker composer up -d --build
 ```
 
 - Logo em seguida no direóro raiz do projeto execute o compser install
@@ -57,11 +57,13 @@ root@577187a1bdd4# cp -v .envexemplo .env
 root@577187a1bdd4# php artisan key:generate
 root@577187a1bdd4# php artisan config:clear
 root@577187a1bdd4# php artisan config:cache
+root@577187a1bdd4# php artisan migrate
+root@577187a1bdd4# php artisan db:seed
 ```
 
 ## Endereço de Acesso
 
 Acessa um navegador e digita as seguintes url
-- http://localhost:8090/: phpMyAdmin 
-- http://localhost:8088/: Desafio Técnico 
+- http://localhost:8091/: phpMyAdmin 
+- http://localhost:8090/: Desafio Técnico 
 
