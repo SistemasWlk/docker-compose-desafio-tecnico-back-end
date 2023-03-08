@@ -39,7 +39,7 @@ RUN mkdir -p /home/$user/.composer && \
 # For Laravel Installations
 #RUN php /var/www/artisan key:generate
 
-#RUN chown -R www-data:www-data /var/www
+RUN chown -R $user:$user /var/www
 
 # Install redis
 RUN pecl install -o -f redis \
