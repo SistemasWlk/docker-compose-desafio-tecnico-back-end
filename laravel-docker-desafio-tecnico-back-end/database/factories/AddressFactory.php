@@ -19,13 +19,13 @@ class AddressFactory extends Factory
     public function definition()
     {
         return [
-            'cep' => $faker->cep,
-            'address' => $faker->address,
-            'number' => $faker->number,
-            'complement' => $faker->complement,
-            'neighborhood' => $faker->neighborhood,
-            'city' => $faker->city,
-            'state' => $faker->state,
+            'cep' => '76550-000',
+            'address' => Str::random(),
+            'number' => Str::random(),
+            'complement' => Str::random(),
+            'neighborhood' => Str::random(),
+            'city' => Str::random(),
+            'state' => Str::random()
         ];
     }
 }
